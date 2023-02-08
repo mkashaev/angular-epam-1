@@ -20,8 +20,6 @@
     <ng-template #noResults> No results </ng-template>
   </ng-container>
 
-  <span>{{ planetAndCharactersResults$ }} </span>
-
   <button (click)="loadCharactersAndPlanet()">Load Characters And Planets</button>
   <ng-container *ngIf="planetAndCharactersResults$ | async as results">
   <div *ngIf="results.length > 0; else noResults">
