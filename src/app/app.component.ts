@@ -84,6 +84,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   areAllValuesTrue(elements: boolean[]): boolean {
-    return elements.every((el) => el === true);
+    return elements.every((el) => el);
   }
 }
