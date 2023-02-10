@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   charactersResults$: Observable<any> | null = null;
   planetAndCharactersResults$: Observable<any> | null = null;
   isLoading: boolean = false;
-  combineObservable$: Subscription | null = null;
+  combineObservable: Subscription | null = null;
 
   constructor(private mockDataService: MockDataService) {}
 
@@ -67,7 +67,7 @@ export class AppComponent implements OnInit, OnDestroy {
     - Combine the value of each of the streams.
     - Subscribe to changes
     - Check the received value using the areAllValuesTrue function and pass them to the isLoading variable. */
-    combineLatest([
+    this.combineObservable = combineLatest([
       this.mockDataService.getCharactersLoader(),
       this.mockDataService.getPlanetLoader(),
     ]).subscribe({
@@ -79,8 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // 5.2 Unsubscribe from all subscriptions
-    this.mockDataService.charactersLoader$.unsubscribe();
-    this.mockDataService.planetsLoader$.unsubscribe();
+    this.combineObservable?.unsubscribe();
   }
 
   areAllValuesTrue(elements: boolean[]): boolean {
