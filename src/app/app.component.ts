@@ -9,7 +9,7 @@ import {
   Subscription,
   debounceTime,
   switchMap,
-  scan,
+  map,
 } from 'rxjs';
 import { MockDataService } from './mock-data.service';
 
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.planetAndCharactersResults$ = forkJoin([
       this.mockDataService.getCharacters(),
       this.mockDataService.getPlatents(),
-    ]).pipe(scan((acc, cur) => acc.concat(cur[0], cur[1]), []));
+    ]).pipe(map(([characters, planets]) => [...characters, ...planets]));
   }
 
   initLoadingState(): void {
