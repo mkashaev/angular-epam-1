@@ -1,20 +1,20 @@
 <div class="course-card">
     <div class="course-card__description">
       <!-- Replace ::text:: with your code -->
-      <div class="course-card__description-title">::Title::</div>
-      <div class="course-card__description-text">::Description::</div>
+      <div class="course-card__description-title">{{ title }}</div>
+      <div class="course-card__description-text">{{ description }}</div>
     </div>
     <div class="course-card__info">
         <div class="course-card__info-text">
             <div>
               <b>Authors: </b>
-              ::Authors::
+              {{ authors.join(', ') }}
             </div>
-            <div><b>Duration: </b>::Duration::</div>
-            <div><b>Created: </b>::Creation Date::</div>
+            <div><b>Duration: </b>{{ duration | date: 'HH:MM ' }}hours</div>
+            <div><b>Created: </b>{{ createdAt | date: 'dd.MM.YYYY' }}</div>
         </div>
         <div class="course-card__info-actions">
-            <app-button></app-button>
+          <ng-content></ng-content>
         </div>
     </div>
 </div>

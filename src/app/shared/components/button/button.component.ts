@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fas, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+// import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-button',
@@ -8,6 +9,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./button.component.scss'],
 })
 export class ButtonComponent {
+  @Input() title = '';
+  @Input() icon: IconDefinition | null = null;
+
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
   }

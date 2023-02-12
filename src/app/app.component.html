@@ -1,14 +1,19 @@
-<app-header></app-header>
+<app-header>
+  <div class="user-title">Harry Potter</div>
+  <app-button title="LOGOUT"></app-button>
+</app-header>
 <div class="app-root">
   <!-- Search component -->
-  <!-- <app-search></app-search> -->
+  <!-- <app-search class="container"></app-search> -->
 
   <!-- Info component -->
-  <!-- <app-info></app-info> -->
+  <!-- <app-info [text]="'Please use \'' + infoButtonTitle + '\' button to add your first course'">
+    <app-button [title]="infoButtonTitle"></app-button>
+  </app-info> -->
 
   <!-- Course Card component -->
-  <!-- <app-course-card></app-course-card> -->
-
+  <app-courses [data]="data" [editable]="true" (onDelete)="handleOnDelete()" (onEdit)="handleOnEdit()"></app-courses>
+  
   <!-- Login Form component -->
   <!--<app-login-form></app-login-form>-->
 

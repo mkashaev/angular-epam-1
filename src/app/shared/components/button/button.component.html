@@ -1,3 +1,4 @@
-<div class="app-button">
-  Button
-</div>
+<button type="botton" class="app-button" [class]="title ? '' : 'app-button__single-icon'">
+  <span *ngIf="title">{{ title }}</span>
+  <fa-icon *ngIf="icon" [icon]="icon" ></fa-icon>
+</button>

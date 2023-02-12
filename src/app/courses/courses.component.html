@@ -1,1 +1,22 @@
-<p>courses works!</p>
+<ng-container *ngIf="data; else empty">
+  <div *ngFor="let item of data">
+    <app-course-card class="container"
+      [title]="item.title"
+      [description]="item.description"
+      [authors]="item.authors"
+      [duration]="item.duration"
+      [createdAt]="item.creationDate"
+    >
+      <app-button title="SHOW COURSE"></app-button>
+      <app-button *ngIf="editable" [icon]="trashIcon" (click)="handleOnDelete()"></app-button>
+      <app-button *ngIf="editable" [icon]="pencilIcon" (click)="handleOnEdit()"></app-button>
+    </app-course-card>
+  </div>
+</ng-container>
+
+
+<ng-template #empty>
+  <app-info [text]="'Please use \'' + infoButtonTitle + '\' button to add your first course'">
+    <app-button [title]="infoButtonTitle"></app-button>
+  </app-info>
+</ng-template>
