@@ -11,6 +11,7 @@ import { fas, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 export class ButtonComponent {
   @Input() title = '';
   @Input() icon: IconDefinition | null = null;
+  @Input() type = 'button';
 
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);

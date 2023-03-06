@@ -1,31 +1,44 @@
 <h2 class="text-align-center">Login</h2>
 <div class="app-plate">
-  <div class="login-form">
+  <form class="login-form" *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <div class="form__control">
         <label for="email">Email</label>
         <input
+          formControlName="login"
           type="text"
           id="email"
           placeholder="Input text"
+          [ngClass]="{ invalid: login?.errors && login?.touched && submitted}"
         />
+        <div *ngIf="login?.errors?.email && login?.touched" class="app-error-text">
+          Incorrect email
+        </div>
+        <div *ngIf="login?.errors?.required && login?.touched" class="app-error-text">
+          Field is required.
+        </div>
       </div>
       <div class="form__control">
         <label for="password">Password</label>
         <input
+          formControlName="password"
           type="password"
           id="password"
           placeholder="Input text"
+          [ngClass]="{ invalid: password?.errors && password?.touched}"
         />
+        <div *ngIf="password?.errors && password?.touched" class="app-error-text">
+          Password is required.
+        </div>
       </div>
     </div>
     <div>
       <div class="form__action">
-        <app-button></app-button>
+        <app-button type="submit" title="LOGIN" class="form__btn"></app-button>
       </div>
       <div class="form__text">
         If you don't have an account you may <strong>Registration</strong>
       </div>
     </div>
-  </div>
+  </form>
 </div>

@@ -7,9 +7,9 @@ button {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    // padding: 13px 19px;
     padding: 13px 36px;
-    width: fit-content;
+    width: 100%;
+    box-sizing: border-box;
     gap: 10px;
     background: #007298;
     border-radius: 4px;
