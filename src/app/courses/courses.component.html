@@ -1,4 +1,6 @@
 <ng-container *ngIf="data; else empty">
+  <app-search placeholder="Enter course name" (onSearch)="handleOnSearch($event)"></app-search>
+
   <div *ngFor="let item of data">
     <app-course-card class="container"
       [title]="item.title"

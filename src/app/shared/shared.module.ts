@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalComponent } from './components/modal/modal.component';
 import {
@@ -10,9 +11,9 @@ import {
   CourseCardComponent,
   LoginFormComponent,
   RegistrationFormComponent,
-  CourseFormComponent
-} from "./components";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+  CourseFormComponent,
+} from './components';
+import { FormatMins } from './pipes/formatMins.pipe';
 
 const components = [
   HeaderComponent,
@@ -23,17 +24,12 @@ const components = [
   CourseCardComponent,
   LoginFormComponent,
   RegistrationFormComponent,
-  CourseFormComponent
+  CourseFormComponent,
 ];
 
 @NgModule({
-  declarations: [components],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  exports: [components]
+  declarations: [components, FormatMins],
+  imports: [CommonModule, FontAwesomeModule, FormsModule, ReactiveFormsModule],
+  exports: [components],
 })
-export class SharedModule { }
+export class SharedModule {}
