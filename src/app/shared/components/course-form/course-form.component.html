@@ -1,59 +1,97 @@
 <!-- Replace ::text:: with your code -->
 <h2>Create / Edit Course</h2>
+<!-- {{ console.log(author) }} -->
 <form>
   <div class="app-plate">
-    <div class="course">
-      <h3>Main Info</h3>
-      <div class="form__control">
+    <form class="course" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="font-semibold mb-3">Main Info</div>
+      
+      <div class="">
         <label for="title">Title</label>
         <input
+          [ngClass]="isFieldInvalid('title') ? inputInvalidStyle : 'mb-7'"
+          formControlName="title"
           type="text"
           id="title"
-          placeholder="Input text"
+          placeholder="Input title"
         />
+        <div class="mt-2 text-sm text-red-600" *ngIf="isFieldRequired('title')">
+          Field is required.
+        </div>
       </div>
-      <div class="form__control">
+      
+      <div class="mb-1">
         <label for="description">Description</label>
         <textarea
+          [ngClass]="isFieldInvalid('title') ? inputInvalidStyle : 'mb-5'"
+          formControlName="description"
           id="description"
           name="description"
-          placeholder="Input text"
+          placeholder="Input description"
           rows="4"
           cols="5"
         ></textarea>
+        <div class="mt-2 text-sm text-red-600" *ngIf="isFieldRequired('description')">
+          Field is required.
+        </div>
       </div>
-      <div class="separator"></div>
-      <h3>Authors</h3>
+      
+      <div class="separator mb-5"></div>
+      
+      <h3 class="font-semibold mb-3">Authors</h3>
       <div class="form__control">
+        <label for="author">Author Name</label>
         <div class="course__flex">
           <input
+            formControlName="author"
             type="text"
             id="author"
             placeholder="Input Author Name"
+            [ngClass]="formField('author')?.errors?.forbiddenName ? inputInvalidStyle : 'mb-5'"
           />
-          <app-button></app-button>
+          <app-button type="button" title="CREATE AUTHOR" (click)="onAddAuthor()"></app-button>
         </div>
-        <div class="course__authors">
-          ::Authors::
+        <div class="mt-2 text-sm text-red-600" *ngIf="formField('author')?.errors?.forbiddenName">
+          Not valid author name.
         </div>
       </div>
-      <div class="separator"></div>
-      <h3>Duration</h3>
+      <div class="flex">
+        <div class="flex items-center mr-3" *ngFor="let step of authorList.controls; index as i">
+          <span class="mr-1">{{step.value}}</span>
+          <fa-icon [icon]="authorIcon" class="text-lg"></fa-icon>
+        </div>
+      </div>
+
+      
+      <div class="separator mb-5"></div>
+      
+      <h3 class="font-semibold mb-3">Duration</h3>
       <div class="form__control">
+        <label for="duration">Duration</label>
         <div class="course__flex">
           <input
+            [ngClass]="isFieldInvalid('duration') ? inputInvalidStyle : 'mb-5'"
+            formControlName="duration"
             type="number"
             id="duration"
             placeholder="Input duration"
           />
+
           <div class="course__duration">
-            ::Duration::
+            {{ durationValue | formatMins }}
           </div>
         </div>
+        <div class="mt-2 text-sm text-red-600" *ngIf="isFieldRequired('duration')">
+          Field is required.
+        </div>
+        <div class="mt-2 text-sm text-red-600" *ngIf="isFieldInvalid('duration') && formField('duration')?.errors?.min">
+          Duration is positive.
+        </div>
       </div>
+      
       <div class="form__action">
-        <app-button></app-button>
+        <app-button type="submit" title="CREATE COURSE"></app-button>
       </div>
-    </div>
+    </form>
   </div>
 </form>

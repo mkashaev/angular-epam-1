@@ -1,34 +1,55 @@
 <h2 class="text-align-center">Registration</h2>
 <div class="app-plate">
-  <div class="registration-form">
+  <form class="registration-form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
       <div class="form__control">
         <label for="name">Name</label>
         <input
+          formControlName="name"
           type="text"
           id="name"
           placeholder="Input text"
+          [ngClass]="{ invalid: name?.errors && name?.touched}"
         />
+        <div *ngIf="name?.errors?.minlength && name?.touched" class="app-error-text">
+          Less than 6 characters
+        </div>
+        <div *ngIf="name?.errors?.required && name?.touched" class="app-error-text">
+          Field is required.
+        </div>
       </div>
       <div class="form__control">
         <label for="email">Email</label>
         <input
+          formControlName="email"
           type="text"
           id="email"
           placeholder="Input text"
+          [ngClass]="{ invalid: email?.errors && email?.touched}"
         />
+        <div *ngIf="email?.errors?.email && email?.touched" class="app-error-text">
+          Incorrect email
+        </div>
+        <div *ngIf="email?.errors?.required && email?.touched" class="app-error-text">
+          Field is required.
+        </div>
       </div>
       <div class="form__control">
         <label for="password">Password</label>
         <input
+          formControlName="password"
           type="password"
           id="password"
           placeholder="Input text"
+          [ngClass]="{ invalid: password?.errors && password?.touched}"
         />
+        <div *ngIf="password?.errors?.required && password?.touched" class="app-error-text">
+          Field is required.
+        </div>
       </div>
     </div>
     <div class="form__action">
-      <app-button></app-button>
+      <app-button type="submit" title="REGISER"></app-button>
     </div>
-  </div>
+  </form>
 </div>

@@ -37,4 +37,8 @@ export class CoursesComponent {
   handleOnEdit() {
     this.onEdit.emit();
   }
+
+  handleOnSearch(value?: string) {
+    console.log({ value });
+  }
 }
