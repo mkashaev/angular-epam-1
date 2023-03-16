@@ -1,0 +1,30 @@
+<div class="pt-10">
+  <div class="flex mb-5">
+    <app-button title="Back" (click)="onBack()"></app-button>
+    <h1 class="ml-3 text-3xl font-semibold flex items-center">{{ title }}</h1>
+  </div>
+  
+  <div class="bg-white p-10">
+    <div class="grid grid-cols-2 divide-x">
+      <div class="px-5">
+        <div class="font-semibold mb-3">Description:</div>
+        <div class="font-light">{{ description }}</div>
+      </div>
+      <div class="px-5 flex">
+        <div class="w-28">
+          <div class="font-semibold">ID:</div>
+          <div class="font-semibold">Duration:</div>
+          <div class="font-semibold">Created:</div>
+          <div class="font-semibold">Authors:</div>
+        </div>
+
+        <div>
+          <div>{{ id }}</div>
+          <div>{{ duration | formatMins }}</div>
+          <div>{{ createdAt | date: 'dd.MM.YYYY' }}</div>
+          <div>{{ authors.join(', ') }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

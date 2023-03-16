@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'formatMins' })
 export class FormatMins implements PipeTransform {
-  transform(minutes: number): string {
+  transform(minutes: number | null): string {
     if (!minutes || minutes < 0) {
       return '00:00';
     }

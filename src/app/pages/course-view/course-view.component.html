@@ -1,0 +1,17 @@
+
+<ng-container>
+  <div *ngIf="isLoading$ | async">
+    Loading...
+  </div>
+</ng-container>
+
+<ng-container *ngIf="course$ | async as data">
+  <app-course-view
+    [title]="data.title"
+    [description]="data.description"
+    [id]="data.id"
+    [duration]="data.duration"
+    [createdAt]="data.creationDate"
+    [authors]="data.authors"
+  />
+</ng-container>

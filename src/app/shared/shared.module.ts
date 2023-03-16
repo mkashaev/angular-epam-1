@@ -12,6 +12,8 @@ import {
   LoginFormComponent,
   RegistrationFormComponent,
   CourseFormComponent,
+  CourseListComponent,
+  CourseViewComponent,
 } from './components';
 import { FormatMins } from './pipes/formatMins.pipe';
 
@@ -22,9 +24,11 @@ const components = [
   SearchComponent,
   ModalComponent,
   CourseCardComponent,
+  CourseListComponent,
   LoginFormComponent,
   RegistrationFormComponent,
   CourseFormComponent,
+  CourseViewComponent,
 ];
 
 @NgModule({

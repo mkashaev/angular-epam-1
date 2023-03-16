@@ -10,6 +10,6 @@ export class CourseCardComponent {
   @Input() description = '';
   @Input() authors: string[] = [];
   @Input() duration: number | null = null;
-  @Input() createdAt: Date | null = null;
+  @Input() createdAt: string | null = null;
   @Input() editable = true;
 }
