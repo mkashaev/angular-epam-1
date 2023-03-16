@@ -1,6 +1,5 @@
 <div class="course-card">
     <div class="course-card__description">
-      <!-- Replace ::text:: with your code -->
       <div class="course-card__description-title">{{ title }}</div>
       <div class="course-card__description-text">{{ description }}</div>
     </div>
@@ -10,7 +9,7 @@
               <b>Authors: </b>
               {{ authors.join(', ') }}
             </div>
-            <div><b>Duration: </b>{{ duration | date: 'HH:MM ' }}hours</div>
+            <div><b>Duration: </b>{{ duration | formatMins }} hours</div>
             <div><b>Created: </b>{{ createdAt | date: 'dd.MM.YYYY' }}</div>
         </div>
         <div class="course-card__info-actions">

@@ -1,0 +1,7 @@
+<app-course-list
+  [isLoading]="isLoading$ | async"
+  [data]="courses$ | async"
+  [editable]="true"
+  (onDelete)="handleOnDelete()"
+  (onEdit)="handleOnEdit()"
+/>
