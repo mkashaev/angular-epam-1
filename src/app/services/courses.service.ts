@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 import { ICourse } from '../models/course';
-import { ICoursesResponseDto, ICourseResponseDto } from './dto/ICourseResponse.dto';
+import { ICourseListResponseDto, ICourseResponseDto } from './dto/ICourseResponse.dto';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesService {
@@ -24,7 +24,7 @@ export class CoursesService {
 
   getAll() {
     this._isLoading$$.next(true);
-    this.http.get<ICoursesResponseDto>(`${environment.apiUrl}/courses/all`).subscribe({
+    this.http.get<ICourseListResponseDto>(`${environment.apiUrl}/courses/all`).subscribe({
       next: (data) => {
         this._courses$$.next(data.result);
       },
@@ -32,6 +32,10 @@ export class CoursesService {
         this._isLoading$$.next(false);
       },
     });
+  }
+
+  getAllObservable(): Observable<ICourseListResponseDto> {
+    return this.http.get<ICourseListResponseDto>(`${environment.apiUrl}/courses/all`);
   }
 
   getCourseById(id: string) {
@@ -44,5 +48,9 @@ export class CoursesService {
         this._isCourseLoading$$.next(false);
       },
     });
+  }
+
+  getCourseByIdObservable(id: string): Observable<ICourseResponseDto> {
+    return this.http.get<ICourseResponseDto>(`${environment.apiUrl}/courses/${id}`);
   }
 }
