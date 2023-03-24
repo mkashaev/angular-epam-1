@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-// import { ICourse } from 'src/app/models/course';
 import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesFacade } from 'src/app/store/courses/courses.facade';
 
 @Component({
   selector: 'app-course-view-page',
@@ -10,16 +10,20 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: [],
 })
 export class CourseViewComponent {
-  isLoading$ = this.courseService.isCourseLoading$;
-  course$ = this.courseService.courseById$;
+  isLoading$ = this.courseFacade.isCourseLoading$;
+  course$ = this.courseFacade.course$;
 
-  constructor(private router: ActivatedRoute, private courseService: CoursesService) {}
+  constructor(
+    private router: ActivatedRoute,
+    private courseFacade: CoursesFacade,
+    private courseService: CoursesService
+  ) {}
 
   ngOnInit() {
     const courseId = this.router.snapshot.paramMap.get('id');
     console.log({ courseId });
     if (courseId) {
-      this.courseService.getCourseById(courseId);
+      this.courseFacade.getCourseById(courseId);
     }
   }
 }

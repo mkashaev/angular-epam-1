@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { tap } from 'rxjs';
 import { CoursesService } from 'src/app/services/courses.service';
+import { CoursesFacade } from 'src/app/store/courses/courses.facade';
 // import { faTrash, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { mockedCourseList } from './mocks';
 
@@ -17,19 +19,14 @@ interface IData {
   styleUrls: [],
 })
 export class CoursesComponent {
-  isLoading$ = this.coursesServices.isLoading$;
-  courses$ = this.coursesServices.courses$;
+  isLoading$ = this.coursesFacade.isCourseListLoading$;
+  courses$ = this.coursesFacade.courseList$;
 
-  constructor(private coursesServices: CoursesService) {}
+  constructor(private coursesFacade: CoursesFacade) {}
 
   ngOnInit() {
-    this.coursesServices.getAll();
+    this.coursesFacade.getCourseList();
   }
-
-  data: IData[] = mockedCourseList.map((elem) => ({
-    ...elem,
-    creationDate: new Date(elem.creationDate),
-  }));
 
   handleOnDelete() {
     console.log('On delete was clicked');
